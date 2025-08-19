@@ -1,4 +1,5 @@
 ## 파일 구조
+```text
 lib/
  ├── main.dart                // 앱 진입점
  ├── app.dart                 // MaterialApp, 라우팅 등 전체 앱 설정
@@ -29,3 +30,4 @@ lib/
  │
  └── navigation/              // 하단 네비게이션, 탭 네비게이션 등
      └── bottom_nav.dart
+```
