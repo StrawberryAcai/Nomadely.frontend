@@ -1,32 +1,33 @@
-name: Flutter
+name: Flutter CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build:
+  build-test:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v2
 
-      # Flutter SDK 설치 (dart-lang/setup-dart 대신 flutter 설치가 필요)
-      - name: Setup Flutter
+      - name: Flutter 설정
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
+          flutter-version: "3.0.0"
 
-      - name: Install dependencies
+      - name: 의존성 설치
         run: flutter pub get
 
-      # - name: Verify formatting
-      #   run: flutter format --set-exit-if-changed .
+      - name: 코드 포맷 검사
+        run: flutter format --set-exit-if-changed .
 
-      - name: Analyze project source
-        run: flutter analyze
+      - name: 유닛 테스트 실행
+        run: flutter test --coverage
 
-      - name: Run tests
-        run: flutter test
+      - name: APK 빌드
+        run: flutter build apk --release
