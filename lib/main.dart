@@ -1,6 +1,6 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'package:nomadely/navigation/bottom_nav.dart';
+import 'package:nomadely/navigation/bottomNav.dart';
 
 void main() {
   runApp(const MyApp());

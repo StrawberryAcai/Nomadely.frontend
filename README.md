@@ -25,9 +25,6 @@ lib/
  │       ├── model/
  │       └── controller/
  │
- ├── routes/                  // 전역 라우팅 정의
- │   └── app_routes.dart
- │
  └── navigation/              // 하단 네비게이션, 탭 네비게이션 등
      └── bottom_nav.dart
 ```
