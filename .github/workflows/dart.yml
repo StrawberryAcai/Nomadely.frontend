@@ -24,7 +24,7 @@ jobs:
         run: flutter pub get
 
       - name: 코드 포맷 검사
-        run: flutter format --set-exit-if-changed .
+        run: dart format --set-exit-if-changed .
 
       - name: 유닛 테스트 실행
         run: flutter test --coverage

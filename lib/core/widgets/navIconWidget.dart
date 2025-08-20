@@ -10,9 +10,9 @@ class NavIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       assetName,
-      width: 24,         // 고정 스타일
+      width: 24, // 고정 스타일
       height: 24,
-      colorFilter: ColorFilter.mode(Colors.grey, BlendMode.srcIn)
+      colorFilter: ColorFilter.mode(Colors.grey, BlendMode.srcIn),
     );
   }
 }

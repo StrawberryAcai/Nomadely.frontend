@@ -5,6 +5,7 @@ import 'package:nomadely/features/home/view/homePage.dart';
 import 'package:nomadely/features/profile/view/profilePage.dart';
 import 'package:nomadely/features/tour/view/tourPage.dart';
 import 'package:nomadely/core/widgets/navIconWidget.dart';
+
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
 
@@ -34,7 +35,7 @@ class _BottomNavState extends State<BottomNav> with TickerProviderStateMixin {
           ExplorePage(),
           TourPage(),
           CommunityPage(),
-          ProfilePage()
+          ProfilePage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -44,11 +45,32 @@ class _BottomNavState extends State<BottomNav> with TickerProviderStateMixin {
           _tabController.animateTo(index); // 탭 이동
         },
         items: const [
-          BottomNavigationBarItem(icon: NavIconWidget(assetName: 'assets/icons/navigation/home.svg'), label: "홈"),
-          BottomNavigationBarItem(icon: NavIconWidget(assetName: 'assets/icons/navigation/explore.svg'), label: "지역체험"),
-          BottomNavigationBarItem(icon: NavIconWidget(assetName: 'assets/icons/navigation/tour.svg'), label: "관광"),
-          BottomNavigationBarItem(icon: NavIconWidget(assetName: 'assets/icons/navigation/community.svg'), label: "커뮤니티"),
-          BottomNavigationBarItem(icon: NavIconWidget(assetName: 'assets/icons/navigation/profile.svg'), label: "마이"),
+          BottomNavigationBarItem(
+            icon: NavIconWidget(assetName: 'assets/icons/navigation/home.svg'),
+            label: "홈",
+          ),
+          BottomNavigationBarItem(
+            icon: NavIconWidget(
+              assetName: 'assets/icons/navigation/explore.svg',
+            ),
+            label: "지역체험",
+          ),
+          BottomNavigationBarItem(
+            icon: NavIconWidget(assetName: 'assets/icons/navigation/tour.svg'),
+            label: "관광",
+          ),
+          BottomNavigationBarItem(
+            icon: NavIconWidget(
+              assetName: 'assets/icons/navigation/community.svg',
+            ),
+            label: "커뮤니티",
+          ),
+          BottomNavigationBarItem(
+            icon: NavIconWidget(
+              assetName: 'assets/icons/navigation/profile.svg',
+            ),
+            label: "마이",
+          ),
         ],
       ),
     );
