@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nomadely/features/home/view/weeklyCalendar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,7 +8,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.green,
-      child: const Center(child: Text("Home Page")),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [WeeklyCalendar()],
+      ),
     );
   }
 }
