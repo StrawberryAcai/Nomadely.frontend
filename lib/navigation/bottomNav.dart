@@ -47,7 +47,9 @@ class BottomNavScaffold extends StatelessWidget {
             label: "홈",
           ),
           BottomNavigationBarItem(
-            icon: NavIconWidget(assetName: 'assets/icons/navigation/explore.svg'),
+            icon: NavIconWidget(
+              assetName: 'assets/icons/navigation/explore.svg',
+            ),
             label: "지역체험",
           ),
           BottomNavigationBarItem(
@@ -55,11 +57,15 @@ class BottomNavScaffold extends StatelessWidget {
             label: "관광",
           ),
           BottomNavigationBarItem(
-            icon: NavIconWidget(assetName: 'assets/icons/navigation/community.svg'),
+            icon: NavIconWidget(
+              assetName: 'assets/icons/navigation/community.svg',
+            ),
             label: "커뮤니티",
           ),
           BottomNavigationBarItem(
-            icon: NavIconWidget(assetName: 'assets/icons/navigation/profile.svg'),
+            icon: NavIconWidget(
+              assetName: 'assets/icons/navigation/profile.svg',
+            ),
             label: "마이",
           ),
         ],
