@@ -1,48 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:nomadely/features/community/view/communityPage.dart';
-import 'package:nomadely/features/explore/view/explorePage.dart';
-import 'package:nomadely/features/home/view/homePage.dart';
-import 'package:nomadely/features/profile/view/profilePage.dart';
-import 'package:nomadely/features/tour/view/tourPage.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nomadely/core/widgets/navIconWidget.dart';
 
-class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+class BottomNavScaffold extends StatelessWidget {
+  const BottomNavScaffold({super.key, required this.child});
 
-  @override
-  State<BottomNav> createState() => _BottomNavState();
-}
-
-class _BottomNavState extends State<BottomNav> with TickerProviderStateMixin {
-  late final TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 5, vsync: this);
-  }
-
-  int _currentIndex = 0;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
+    final String location = GoRouterState.of(context).uri.toString();
+
+    int currentIndex = 0;
+    if (location.startsWith('/home')) currentIndex = 0;
+    if (location.startsWith('/explore')) currentIndex = 1;
+    if (location.startsWith('/tour')) currentIndex = 2;
+    if (location.startsWith('/community')) currentIndex = 3;
+    if (location.startsWith('/profile')) currentIndex = 4;
+
     return Scaffold(
-      body: TabBarView(
-        controller: _tabController,
-        physics: const NeverScrollableScrollPhysics(), // 스와이프 막고 nav바로만 이동 가능
-        children: const [
-          HomePage(),
-          ExplorePage(),
-          TourPage(),
-          CommunityPage(),
-          ProfilePage(),
-        ],
-      ),
+      body: child,
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
+        currentIndex: currentIndex,
         onTap: (index) {
-          setState(() => _currentIndex = index);
-          _tabController.animateTo(index); // 탭 이동
+          switch (index) {
+            case 0:
+              context.go('/home');
+              break;
+            case 1:
+              context.go('/explore');
+              break;
+            case 2:
+              context.go('/tour');
+              break;
+            case 3:
+              context.go('/community');
+              break;
+            case 4:
+              context.go('/profile');
+              break;
+          }
         },
         items: const [
           BottomNavigationBarItem(
@@ -50,9 +47,7 @@ class _BottomNavState extends State<BottomNav> with TickerProviderStateMixin {
             label: "홈",
           ),
           BottomNavigationBarItem(
-            icon: NavIconWidget(
-              assetName: 'assets/icons/navigation/explore.svg',
-            ),
+            icon: NavIconWidget(assetName: 'assets/icons/navigation/explore.svg'),
             label: "지역체험",
           ),
           BottomNavigationBarItem(
@@ -60,15 +55,11 @@ class _BottomNavState extends State<BottomNav> with TickerProviderStateMixin {
             label: "관광",
           ),
           BottomNavigationBarItem(
-            icon: NavIconWidget(
-              assetName: 'assets/icons/navigation/community.svg',
-            ),
+            icon: NavIconWidget(assetName: 'assets/icons/navigation/community.svg'),
             label: "커뮤니티",
           ),
           BottomNavigationBarItem(
-            icon: NavIconWidget(
-              assetName: 'assets/icons/navigation/profile.svg',
-            ),
+            icon: NavIconWidget(assetName: 'assets/icons/navigation/profile.svg'),
             label: "마이",
           ),
         ],

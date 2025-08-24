@@ -1,6 +1,6 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'package:nomadely/navigation/bottomNav.dart';
+import 'package:nomadely/router/mainRouter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: BottomNav());
+    return MaterialApp.router(
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
