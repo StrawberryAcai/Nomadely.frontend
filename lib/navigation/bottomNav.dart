@@ -19,7 +19,7 @@ class BottomNavScaffold extends StatelessWidget {
     if (location.startsWith('/profile')) currentIndex = 4;
 
     return Scaffold(
-      body: child,
+      body: SafeArea(child: child),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {

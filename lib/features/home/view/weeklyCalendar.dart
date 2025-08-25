@@ -6,6 +6,7 @@ class WeeklyCalendar extends StatefulWidget {
     this.startOnMonday = true,
     this.onSelect,
     this.initialSelected,
+    this.padding = 0,
   });
 
   /// 주 시작 요일 (true면 월요일, false면 일요일)
@@ -16,6 +17,8 @@ class WeeklyCalendar extends StatefulWidget {
 
   /// 처음 선택할 날짜 (없으면 오늘)
   final DateTime? initialSelected;
+
+  final double padding;
 
   @override
   State<WeeklyCalendar> createState() => _WeeklyCalendarState();
@@ -36,11 +39,14 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
     _weekDays = _buildThisWeek(_today, startOnMonday: widget.startOnMonday);
   }
 
-  List<DateTime> _buildThisWeek(DateTime anchor,
-      {required bool startOnMonday}) {
+  List<DateTime> _buildThisWeek(
+    DateTime anchor, {
+    required bool startOnMonday,
+  }) {
     final d = DateTime(anchor.year, anchor.month, anchor.day);
-    int deltaToStart =
-        startOnMonday ? (d.weekday - DateTime.monday) : (d.weekday % 7);
+    int deltaToStart = startOnMonday
+        ? (d.weekday - DateTime.monday)
+        : (d.weekday % 7);
     final start = d.subtract(Duration(days: deltaToStart));
     return List.generate(7, (i) => start.add(Duration(days: i)));
   }
@@ -52,7 +58,8 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final screenWidth = MediaQuery.of(context).size.width;
-    final itemWidth = screenWidth / 7; // 7일을 화면에 맞춤, 스크롤 없음
+    
+    final itemWidth = (screenWidth - 48) / 7; // 7일을 화면에 맞춤, 스크롤 없음
 
     return SizedBox(
       height: 88,
@@ -89,8 +96,8 @@ class _WeeklyCalendarState extends State<WeeklyCalendar> {
                         color: isToday
                             ? theme.colorScheme.onPrimary
                             : (isSelected
-                                ? theme.colorScheme.primary
-                                : theme.colorScheme.onSurface),
+                                  ? theme.colorScheme.primary
+                                  : theme.colorScheme.onSurface),
                       ),
                     ),
                   ),
